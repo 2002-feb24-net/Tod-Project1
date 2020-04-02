@@ -13,7 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: Print hello world
 
-- script: |
-    echo "Showing current directory contents"
-    ls
-  displayName: Show directory contents
+- script:  dotnet build
+  workingDirectory: project1
+  displayName: dotnet build
