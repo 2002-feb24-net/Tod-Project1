@@ -13,6 +13,6 @@ steps:
 - script: echo Hello, world!
   displayName: Print hello world
 
-- script: dotnet build 
-  workingDirectory: ./project1
+- script:  ls
+  #workingDirectory: ./project1
   displayName: dotnet build
