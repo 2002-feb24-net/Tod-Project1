@@ -14,5 +14,5 @@ steps:
   displayName: Print hello world
 
 - script: dotnet build 
-  workingDirectory:
+  workingDirectory: .
   displayName: dotnet build
