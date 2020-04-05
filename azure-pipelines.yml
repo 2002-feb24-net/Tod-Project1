@@ -10,8 +10,10 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: Print hello world
+- script: dotnet test --logger trx
+  workingDirectory: project1
+  displayName: test project
+
 
 - script:  dotnet build
   workingDirectory: project1
