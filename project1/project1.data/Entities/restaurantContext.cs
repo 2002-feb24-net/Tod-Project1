@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System.Configuration;
 
 namespace project1.data.Entities
 {
@@ -26,7 +27,8 @@ namespace project1.data.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("DbConnect");
+                string db = "Server=tcp:training-tshjones.database.windows.net,1433;Initial Catalog=restaurant;Persist Security Info=False;User ID=Gwyrddu;Password=Retsnif1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+                optionsBuilder.UseSqlServer(db);
             }
         }
 
