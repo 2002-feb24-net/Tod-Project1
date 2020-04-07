@@ -9,36 +9,43 @@
 <p>
     <a asp-action="Create">Current Locations</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<form method = "post" action = "@Url.Action("Index", "MainMenu")" class="form-inline">
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <!--<td>
-                    <a asp-action="Edit" asp-route-id="@item.Storenum">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Storenum">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Storenum">Delete</a>
-                </td> -->
+                <th></th>
+                <th></th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
             </tr>
-        }
-    </tbody>
-</table>
-<div>
-    <form asp-action="Index" method="GET" class="form-inline">
-        <label class="sr-only" for="search">Search:</label>
-        <input type="search" class="form-control1" id="search" name="search" placeholder="Search" />
-        <button type="submit" class="btn-primary">Submit</button>
-    </form>
-</div>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Storenum)
+                    </td>
+                    <td>
+                        <input type="radio" name="locale" id="
+                @Html.DisplayFor(modelItem => item.Storenum)"  
+                    value="@Html.DisplayFor(modelItem => item.Storenum)@Html.DisplayFor(modelItem => item.Name)" />
+                        <!--<a asp-action="Edit" asp-route-id="@item.Storenum">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Storenum">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Storenum">Delete</a>-->
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+<button type="submit" class="btn-primary">Submit</button>
+</form>
+
 

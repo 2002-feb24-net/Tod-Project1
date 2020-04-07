@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Add New Customer</h2>
+<form method="post" action = "@Url.Action("Index", "MainMenu")">
+    <ul>
+    <li>Name: <input type="text" id="name"/></li>
+    <li>Address: <input type="text" id="address" /></li>
+    <li>Phone:<input type="text" id="phone" /></li>
+    <li>storenum<input type="hidden" id="storeNum" /></li>
+    <li><button type="submit">Submit</button></li>
+    </ul>
+</form>
+

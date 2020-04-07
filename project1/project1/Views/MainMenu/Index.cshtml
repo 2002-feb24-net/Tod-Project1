@@ -1,0 +1,18 @@
+﻿@model project1.data.Models.Locations
+@{
+    ViewData["Title"] = "MainMenu";
+}
+
+<h2>Welcome to Zhou Mama's Chinese Restaurant at @Model.cityState</h2>
+
+<form method="post" action="@Url.Action("ChangeMenu", "MainMenu")" >
+    
+    <ul>
+    
+    <li><input type="radio" name="main" id="customerlist" value="customerlist" />List Store Customers</li>
+    <li><input type="radio" name="main" id="restaurantmenu" value="restaurantmenu" />Show Menu</li>
+    <li><input type="radio" name="main" id="addCustomer" value="addCustomer" />Add Customer</li>
+    <li><input type="radio" name="main" id="viewStoreOrders" value="storeOrders" />View Store Orders</li>
+    <li><button type="submit">Submit</button></li>
+    </ul>    
+  </form>

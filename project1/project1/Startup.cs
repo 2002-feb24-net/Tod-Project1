@@ -30,7 +30,7 @@ namespace project1
             services.AddControllers();
             services.AddControllersWithViews();
             services.AddDbContext<restaurantContext>(options =>
-                options.UseSqlServer(Configuration.GetValue<string>("DbConnect")));
+                options.UseSqlServer(Configuration.GetValue<string>("DbConnect"))); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

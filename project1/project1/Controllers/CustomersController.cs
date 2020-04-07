@@ -9,95 +9,90 @@ using project1.data.Entities;
 
 namespace project1.Controllers
 {
-    //[ApiController]
-    //[Route("[controller]")]
-    public class LocationsController : Controller
+    public class CustomersController : Controller
     {
         private readonly restaurantContext _context;
 
-        public LocationsController(restaurantContext context)
+        public CustomersController(restaurantContext context)
         {
             _context = context;
         }
-        /*
-        public ActionResult GotoMain()
-        {
-            return RedirectToAction(nameof(Index));
 
-        }*/
-
-        // GET: Locations
+        // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Location.ToListAsync());
+            var restaurantContext = _context.Customer.Include(c => c.StorenumNavigation);
+            return View(await restaurantContext.ToListAsync());
         }
 
-
-        // GET: Locations/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: Customers/Details/5
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var location = await _context.Location
-                .FirstOrDefaultAsync(m => m.Storenum == id);
-            if (location == null)
+            var customer = await _context.Customer
+                .Include(c => c.StorenumNavigation)
+                .FirstOrDefaultAsync(m => m.Name == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(location);
+            return View(customer);
         }
 
-        // GET: Locations/Create
+        // GET: Customers/Create
         public IActionResult Create()
         {
+            ViewData["Storenum"] = new SelectList(_context.Location, "Storenum", "Name");
             return View();
         }
 
-        // POST: Locations/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Storenum")] Location location)
+        public async Task<IActionResult> Create([Bind("Name,Address,Storenum,Phone")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(location);
+                _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(location);
+            ViewData["Storenum"] = new SelectList(_context.Location, "Storenum", "Name", customer.Storenum);
+            return View(customer);
         }
 
-        // GET: Locations/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: Customers/Edit/5
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var location = await _context.Location.FindAsync(id);
-            if (location == null)
+            var customer = await _context.Customer.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
-            return View(location);
-            
+            ViewData["Storenum"] = new SelectList(_context.Location, "Storenum", "Name", customer.Storenum);
+            return View(customer);
         }
 
-        // POST: Locations/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Storenum")] Location location)
+        public async Task<IActionResult> Edit(string id, [Bind("Name,Address,Storenum,Phone")] Customer customer)
         {
-            if (id != location.Storenum)
+            if (id != customer.Name)
             {
                 return NotFound();
             }
@@ -106,12 +101,12 @@ namespace project1.Controllers
             {
                 try
                 {
-                    _context.Update(location);
+                    _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LocationExists(location.Storenum))
+                    if (!CustomerExists(customer.Name))
                     {
                         return NotFound();
                     }
@@ -122,41 +117,43 @@ namespace project1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(location);
+            ViewData["Storenum"] = new SelectList(_context.Location, "Storenum", "Name", customer.Storenum);
+            return View(customer);
         }
 
-        // GET: Locations/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: Customers/Delete/5
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var location = await _context.Location
-                .FirstOrDefaultAsync(m => m.Storenum == id);
-            if (location == null)
+            var customer = await _context.Customer
+                .Include(c => c.StorenumNavigation)
+                .FirstOrDefaultAsync(m => m.Name == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(location);
+            return View(customer);
         }
 
-        // POST: Locations/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var location = await _context.Location.FindAsync(id);
-            _context.Location.Remove(location);
+            var customer = await _context.Customer.FindAsync(id);
+            _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LocationExists(int id)
+        private bool CustomerExists(string id)
         {
-            return _context.Location.Any(e => e.Storenum == id);
+            return _context.Customer.Any(e => e.Name == id);
         }
     }
 }
