@@ -10,44 +10,44 @@ namespace project1.Controllers
 {
     public class AddCustomerController : Controller
     {
+        
+
         // GET: AddCustomer
         public ActionResult Index()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Index(FormCollection form)
+        public ActionResult Index(string name, string address, string phone, string storeNum)
         {
+            //if (form == null) throw new ArgumentNullException("form");
 
-            var newCustomer = new Customer
+            try
             {
-                Name = form["name"],
-                Address = form["address"],
-                Storenum = int.Parse(form["storeNum"]),
-                Phone = form["phone"]
-            };
-            using (var context = new restaurantContext())
-            {
-                context.Customer.Add(newCustomer);
-                context.SaveChanges();
-            }
-                /*
-                public static void AddCustomer(Customers patron)
+                var newCustomer = new Customer
                 {
-                    var newCustomer = new Customer
-                    {
-                        Name = patron.name,
-                        Address = patron.address,
-                        Storenum = patron.storeNum,
-                        Phone = patron.phone
-                    };
-                    using (var context = new restaurantContext())
-                    {
-                        context.Customer.Add(newCustomer);
-                        context.SaveChanges();
-                    }*/
-                return View();
-        }
+
+                    Name = name,
+                    Address = address,
+                    Storenum = int.Parse(storeNum),
+                    Phone = phone
+
+                };
+                using (var context = new restaurantContext())
+                {
+                    context.Customer.Add(newCustomer);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                return Redirect("../MainMenu");
+            }
+               
+                return Redirect("../MainMenu");
+            }
+
+            
 
         // GET: AddCustomer/Details/5
         public ActionResult Details(int id)

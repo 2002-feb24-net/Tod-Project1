@@ -16,6 +16,12 @@ namespace project1.Controllers
             return View();
         }
 
+        /*public ActionResult Index(string hidden)
+        {
+            TempData[
+            return View();
+        }*/
+
         public ActionResult ChangeMenu(string main)
         {
             if (main == "restaurantmenu")
@@ -50,6 +56,7 @@ namespace project1.Controllers
             }
             TempData["location"] = location;
             TempData["storeNum"] = storenum;
+            TempData.Keep();
             Locations model = new Locations(locale, 1); //don't need number now, change at later date
             return View(model);
         }

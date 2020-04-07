@@ -4,12 +4,12 @@
 }
 
 <h2>Add New Customer</h2>
-<form method="post" action = "@Url.Action("Index", "MainMenu")">
+<form method="post" action = "@Url.Action("Index", "AddCustomer")">
     <ul>
-    <li>Name: <input type="text" id="name"/></li>
-    <li>Address: <input type="text" id="address" /></li>
-    <li>Phone:<input type="text" id="phone" /></li>
-    <li>storenum<input type="hidden" id="storeNum" /></li>
+    <li>Name: <input type="text" name="name"/></li>
+    <li>Address: <input type="text" name="address" /></li>
+    <li>Phone:<input type="text" name="phone" /></li>
+    <li>storenum<input type="text" name="storeNum" /></li>
     <li><button type="submit">Submit</button></li>
     </ul>
 </form>
