@@ -6,25 +6,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using project1.data.Entities;
+using project1.logic.Interfaces;
 
 namespace project1.Controllers
 {
-    public class FoodsController : Controller
+    public class DisplayMenuController : Controller
     {
         private readonly restaurantContext _context;
+        public IRepository Repo { get; }
 
-        public FoodsController(restaurantContext context)
+        public DisplayMenuController(IRepository repo)
         {
-            _context = context;
+            Repo = repo ?? throw new ArgumentNullException(nameof(repo));
         }
 
-        // GET: Foods
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Food.ToListAsync());
+            return View(Repo.GetMenu());
         }
-
-        // GET: Foods/Details/5
+        // GET: DisplayMenu
+        
+        // GET: DisplayMenu/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -42,13 +44,13 @@ namespace project1.Controllers
             return View(food);
         }
 
-        // GET: Foods/Create
+        // GET: DisplayMenu/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Foods/Create
+        // POST: DisplayMenu/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -64,7 +66,7 @@ namespace project1.Controllers
             return View(food);
         }
 
-        // GET: Foods/Edit/5
+        // GET: DisplayMenu/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -80,7 +82,7 @@ namespace project1.Controllers
             return View(food);
         }
 
-        // POST: Foods/Edit/5
+        // POST: DisplayMenu/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -115,7 +117,7 @@ namespace project1.Controllers
             return View(food);
         }
 
-        // GET: Foods/Delete/5
+        // GET: DisplayMenu/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -133,7 +135,7 @@ namespace project1.Controllers
             return View(food);
         }
 
-        // POST: Foods/Delete/5
+        // POST: DisplayMenu/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)

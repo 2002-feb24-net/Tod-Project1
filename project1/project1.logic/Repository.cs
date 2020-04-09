@@ -40,5 +40,51 @@ namespace project1.logic
             }
             return modelCustomer;
         }
+
+        public List<MenuItem> GetMenu()
+        {
+            var MenuContext = restContext.Food.ToList();
+            List<MenuItem> Menu = new List<MenuItem>();
+            FoodType temp = new FoodType();
+            for (int i = 0; i < Enum.GetNames(typeof(FoodType)).Length; i++) //needs error check
+            {
+                for (int j = 0; j < MenuContext.Count; j++)
+                {
+                    temp = (FoodType)i;
+                    if (MenuContext[j].Foodtype == temp.ToString())
+                    {
+
+                        Menu.Add(Mapper.Map(MenuContext[j]));
+                    }
+                }
+            }
+            return Menu;
+        }
+
+        public bool AddCustomer(string name, string address, string storeNum, string phone)
+        {
+            try
+            {
+                var newCustomer = new Customer
+                {
+
+                    Name = name,
+                    Address = address,
+                    Storenum = int.Parse(storeNum),
+                    Phone = phone
+
+                };
+                using (var context = new restaurantContext())
+                {
+                    context.Customer.Add(newCustomer);
+                    context.SaveChanges();
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

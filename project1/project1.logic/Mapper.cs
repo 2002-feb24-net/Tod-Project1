@@ -21,5 +21,13 @@ namespace project1.logic
                 new Customers(entityCustomer.Name, entityCustomer.Address, entityCustomer.Phone, entityCustomer.Storenum);
             return custom;
         }
+
+        public static MenuItem Map(Food entityFood)
+        {
+            //FoodType food = (FoodType)Enum.Parse(typeof(FoodType), menuList[i].Foodtype);
+            FoodType category = (FoodType)Enum.Parse(typeof(FoodType), entityFood.Foodtype);
+            var menu = new MenuItem(entityFood.Name, (double)entityFood.Price, category);
+            return menu;
+        }
     }
 }

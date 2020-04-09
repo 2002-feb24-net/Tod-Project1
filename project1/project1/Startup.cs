@@ -31,7 +31,7 @@ namespace project1
         {
             services.AddControllers();
             services.AddControllersWithViews();
-            //services.AddScoped<ILocations, Locations>();
+            //services.AddScoped<ILocations, Locations>(); //gives errors
             services.AddScoped<IRepository, Repository>();
             services.AddDbContext<restaurantContext>(options =>
                 options.UseSqlServer(Configuration.GetValue<string>("DbConnect")));

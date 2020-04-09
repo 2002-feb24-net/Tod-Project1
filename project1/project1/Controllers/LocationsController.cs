@@ -12,8 +12,6 @@ using project1.ViewModels;
 
 namespace project1.Controllers
 {
-    //[ApiController]
-    //[Route("[controller]")]
     
     public class LocationsController : Controller
     {

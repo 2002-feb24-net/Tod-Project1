@@ -5,12 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using project1.data.Entities;
+using project1.logic.Interfaces;
 
 namespace project1.Controllers
 {
     public class AddCustomerController : Controller
     {
-        
+        public IRepository Repo { get; }
+
+        public AddCustomerController(IRepository repo)
+        {
+            Repo = repo ?? throw new ArgumentNullException(nameof(repo));
+          
+        }
 
         // GET: AddCustomer
         public ActionResult Index()
@@ -18,31 +25,22 @@ namespace project1.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(string name, string address, string phone, string storeNum)
+        public ActionResult Create(string name, string address, string phone)
         {
             //if (form == null) throw new ArgumentNullException("form");
 
-            try
+           
+            var store = TempData["storenum"];
+            TempData["storeNum"] = store;
+            TempData.Keep();
+            string storeNum = store.ToString();
+            TempData.Keep();
+            if(store == null)
             {
-                var newCustomer = new Customer
-                {
-
-                    Name = name,
-                    Address = address,
-                    Storenum = int.Parse(storeNum),
-                    Phone = phone
-
-                };
-                using (var context = new restaurantContext())
-                {
-                    context.Customer.Add(newCustomer);
-                    context.SaveChanges();
-                }
+                return Redirect("../Locations");
             }
-            catch
-            {
-                return Redirect("../MainMenu");
-            }
+            Repo.AddCustomer(name, address, storeNum, phone);
+          
                
                 return Redirect("../MainMenu");
             }
@@ -54,7 +52,7 @@ namespace project1.Controllers
         {
             return View();
         }
-
+        /*
         // GET: AddCustomer/Create
         public ActionResult Create()
         {
@@ -62,6 +60,7 @@ namespace project1.Controllers
         }
 
         // POST: AddCustomer/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -77,7 +76,7 @@ namespace project1.Controllers
                 return View();
             }
         }
-
+        */
         // GET: AddCustomer/Edit/5
         public ActionResult Edit(int id)
         {

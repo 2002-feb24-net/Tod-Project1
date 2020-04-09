@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Project0.logic
+namespace project1.logic.Models
 {
     /// <summary>
     /// this enum is mostly for organizing the menu
