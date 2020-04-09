@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using project1.data.Entities;
+using project1.logic.Interfaces;
+using project1.logic.Models;
+using project1.logic;
 
 namespace project1
 {
@@ -29,8 +31,11 @@ namespace project1
         {
             services.AddControllers();
             services.AddControllersWithViews();
+            //services.AddScoped<ILocations, Locations>();
+            services.AddScoped<IRepository, Repository>();
             services.AddDbContext<restaurantContext>(options =>
-                options.UseSqlServer(Configuration.GetValue<string>("DbConnect"))); 
+                options.UseSqlServer(Configuration.GetValue<string>("DbConnect")));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +51,7 @@ namespace project1
             app.UseRouting();
 
             app.UseAuthorization();
+           
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "default",

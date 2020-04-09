@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using project1.logic.Interfaces;
 
-namespace project1.data.Models
+namespace project1.logic.Models
 {
     /// <summary>
     /// small class for restaurant locations
     /// </summary>
-    public class Locations
+    public class Locations : ILocations
     {
         public string cityState { get; set; }
         public int locNum { get; set; }

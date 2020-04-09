@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using project1.data.Models;
+using project1.logic.Interfaces;
+using project1.logic.Models;
 
 namespace project1.Controllers
 {
@@ -54,10 +55,12 @@ namespace project1.Controllers
             {
                 storenum = 1; 
             }
+
+
             TempData["location"] = location;
             TempData["storeNum"] = storenum;
             TempData.Keep();
-            Locations model = new Locations(locale, 1); //don't need number now, change at later date
+            Locations model = new Locations(locale, storenum); 
             return View(model);
         }
 

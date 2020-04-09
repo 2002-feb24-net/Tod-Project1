@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace project1.data
+namespace project1.logic.Interfaces
 {
-    class Repository
+    public interface ILocations
     {
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<project1.data.Entities.Location>
+﻿@model List<project1.logic.Models.Locations>
 
 @{
     ViewData["Title"] = "Store Locations";
@@ -16,7 +16,7 @@
                 <th></th>
                 <th></th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    Location
                 </th>
 
             </tr>
@@ -27,18 +27,16 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Storenum)
+                        @Html.DisplayFor(modelItem => item.locNum)
                     </td>
                     <td>
                         <input type="radio" name="locale" id="
-                @Html.DisplayFor(modelItem => item.Storenum)"  
-                    value="@Html.DisplayFor(modelItem => item.Storenum)@Html.DisplayFor(modelItem => item.Name)" />
-                        <!--<a asp-action="Edit" asp-route-id="@item.Storenum">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Storenum">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Storenum">Delete</a>-->
+                @Html.DisplayFor(modelItem => item.locNum)"  
+                    value="@Html.DisplayFor(modelItem => item.locNum)@Html.DisplayFor(modelItem => item.cityState)" />
+                        
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.cityState)
                     </td>
                 </tr>
             }

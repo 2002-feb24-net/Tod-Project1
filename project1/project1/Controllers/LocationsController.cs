@@ -6,32 +6,49 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using project1.data.Entities;
+using project1.logic.Interfaces;
+using project1.logic.Models;
+using project1.ViewModels;
 
 namespace project1.Controllers
 {
     //[ApiController]
     //[Route("[controller]")]
+    
     public class LocationsController : Controller
     {
-        private readonly restaurantContext _context;
+        private readonly restaurantContext _context; //dump this
+        public IRepository Repo { get; }
 
-        public LocationsController(restaurantContext context)
+        public LocationsController(IRepository repo)
+        {
+            Repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _context = new restaurantContext();
+        }
+        
+        public ActionResult Index()
+        {
+            //IEnumerable<Restaurant> restaurants = Repo.GetRestaurants(search);
+            //IEnumerable<RestaurantViewModel> viewModels = restaurants.Select(x => new RestaurantViewModel
+            List<Locations> model = Repo.GetLocationList();
+            return View(model);
+
+        }
+        /*public LocationsController(restaurantContext context)
         {
             _context = context;
         }
-        /*
-        public ActionResult GotoMain()
-        {
-            return RedirectToAction(nameof(Index));
-
-        }*/
+       
+       
 
         // GET: Locations
+        /*
         public async Task<IActionResult> Index()
         {
             return View(await _context.Location.ToListAsync());
+            
         }
-
+        */
 
         // GET: Locations/Details/5
         public async Task<IActionResult> Details(int? id)

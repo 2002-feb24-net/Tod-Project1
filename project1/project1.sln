@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project1", "project1\projec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{2E83210D-D1FE-41F2-A17B-8CCE3A0E6069}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project1.data", "project1.data\project1.data.csproj", "{39117D02-FBC4-4143-BAB4-A774D62FFBE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "project1.data", "project1.data\project1.data.csproj", "{39117D02-FBC4-4143-BAB4-A774D62FFBE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "project1.logic", "project1.logic\project1.logic.csproj", "{2DFB143D-FC84-4E50-924D-3F0ED9218E4B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39117D02-FBC4-4143-BAB4-A774D62FFBE8} = {39117D02-FBC4-4143-BAB4-A774D62FFBE8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +32,10 @@ Global
 		{39117D02-FBC4-4143-BAB4-A774D62FFBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39117D02-FBC4-4143-BAB4-A774D62FFBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39117D02-FBC4-4143-BAB4-A774D62FFBE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DFB143D-FC84-4E50-924D-3F0ED9218E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DFB143D-FC84-4E50-924D-3F0ED9218E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DFB143D-FC84-4E50-924D-3F0ED9218E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DFB143D-FC84-4E50-924D-3F0ED9218E4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

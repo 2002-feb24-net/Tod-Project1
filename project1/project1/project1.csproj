@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\project1.data\project1.data.csproj" />
+    <ProjectReference Include="..\project1.logic\project1.logic.csproj" />
     <ProjectReference Include="..\XUnitTestProject1\XUnitTestProject1.csproj" />
   </ItemGroup>
 </Project>

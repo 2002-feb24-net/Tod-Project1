@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using project1.data.Entities;
+using project1.logic.Models;
+using project1.logic.Interfaces;
 
 namespace project1.Controllers
 {
@@ -13,17 +15,40 @@ namespace project1.Controllers
     {
         private readonly restaurantContext _context;
 
+        public IRepository Repo { get; }
+
+        public CustomersController(IRepository repo)
+        {
+            Repo = repo ?? throw new ArgumentNullException(nameof(repo));
+            _context = new restaurantContext();
+        }
+        /*
         public CustomersController(restaurantContext context)
         {
             _context = context;
         }
-
+        */
         // GET: Customers
-        public async Task<IActionResult> Index()
+        
+        public IActionResult Index(string search = "")
         {
-            var restaurantContext = _context.Customer.Include(c => c.StorenumNavigation);
-            return View(await restaurantContext.ToListAsync());
+            var store = 1;
+            if (search == null)
+                search = "";
+            try
+            {
+                store = int.Parse(TempData["storeNum"].ToString());
+            }
+            catch
+            {
+                return Redirect("../Locations");
+            }
+            TempData["storeNum"] = store;
+            TempData.Keep();
+            List<Customers> model = Repo.GetCustomerList(store, search);
+            return View(model);
         }
+
 
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(string id)
