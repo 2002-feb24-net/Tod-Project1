@@ -46,9 +46,9 @@ namespace project1.logic
         {
             List<string> order = items.Split(',').ToList();
             var orderList = restContext.FoodOrder.Include(f => f.NameNavigation);
-            int orderNum = orderList.ToList().Count;
-            try
-            {
+            int orderNum = orderList.ToList().Count + 1;
+            
+         
                 var ordered = new FoodOrder
                 {
                     Name = customerName,
@@ -73,12 +73,7 @@ namespace project1.logic
                         context.OrderItem.Add(itemList);
                         context.SaveChanges();
                     }
-                }
-            }
-            catch
-            {
-                return false;
-            }
+                }          
             return true;
         }
         public List<MenuItem> GetMenu()
