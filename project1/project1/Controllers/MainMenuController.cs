@@ -61,7 +61,7 @@ namespace project1.Controllers
             TempData["location"] = location;
             TempData["storeNum"] = storenum;
             TempData.Keep();
-            Locations model = new Locations(locale, storenum); 
+            Locations model = new Locations(location, storenum); 
             return View(model);
         }
 

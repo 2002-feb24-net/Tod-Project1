@@ -1,0 +1,41 @@
+﻿@model List<project1.logic.ViewModels.MenuItemViewModel>
+@{
+    ViewData["Title"] = "PlaceOrder";
+}
+
+<h2>Order Menu</h2>
+
+<style>
+    label {
+        width: 150px;
+        display: inline-block;
+    }
+</style>
+<form method="post" action="@Url.Action("Create", "PlaceOrder")">
+    <ol>
+
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            
+
+            @if (i == 0 || i > 0 && Model[i].category != Model[i - 1].category)
+            {
+                @Model[i].category.ToString()
+            }
+
+
+
+        <li>
+            <input type="checkbox" name="isChecked" id="@i" value="@Model[i].item">
+    <!--<input name="orderMenu" type="hidden" value="false" />
+            <input asp-for="@Model[i].item" type="checkbox" />-->
+            <label>@Model[i].item</label>
+            <label> @Model[i].price</label>
+        </li>
+
+        }
+    </ol>
+    <button type="submit">Place Order</button>
+    </form>
+</
+

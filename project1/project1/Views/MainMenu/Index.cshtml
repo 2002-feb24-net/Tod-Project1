@@ -1,17 +1,19 @@
-﻿@{
+﻿@model project1.logic.Models.Locations
+@{
     ViewData["Title"] = "MainMenu";
 }
 
-<h2>Welcome to Zhou Mama's Chinese Restaurant at </h2>
+<h2>Welcome to Zhou Mama's Chinese Restaurant</h2>
 
-<form method="post" action="@Url.Action("ChangeMenu", "MainMenu")" >
-    
+<form method="post" action="@Url.Action("ChangeMenu", "MainMenu")">
+
     <ul>
-    
-    <li><input type="radio" name="main" id="customerList" value="customerList" />Show Customers</li>
-    <li><input type="radio" name="main" id="addCustomer" value="addCustomer" />Add Customer</li>
-    <li><input type="radio" name="main" id="viewStoreOrders" value="storeOrders" />View Store Orders</li>
-    <li><input type="radio" name="main" id="displayMenu" value="displayMenu" />Show Restaurant Menu</li>
-    <li><button type="submit">Submit</button></li>
-    </ul>    
-  </form>
+
+        <li><input type="radio" name="main" id="customerList" value="customerList" />Show Customers</li>
+        <li><input type="radio" name="main" id="addCustomer" value="addCustomer" />Add Customer</li>
+        <li><input type="radio" name="main" id="viewStoreOrders" value="storeOrders" />View Store Orders</li>
+        <li><input type="radio" name="main" id="displayMenu" value="displayMenu" />Show Restaurant Menu</li>
+        <li><input type="radio" name="main" id="customerList" value="customerList" />Place Order</li>
+        <li><button type="submit">Submit</button></li>
+    </ul>
+</form>

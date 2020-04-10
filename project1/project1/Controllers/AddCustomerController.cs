@@ -52,32 +52,7 @@ namespace project1.Controllers
         {
             return View();
         }
-        /*
-        // GET: AddCustomer/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AddCustomer/Create
-        
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        */
-        // GET: AddCustomer/Edit/5
+      
         public ActionResult Edit(int id)
         {
             return View();

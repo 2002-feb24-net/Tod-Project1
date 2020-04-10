@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using project1.data.Entities;
 using project1.logic.Interfaces;
 using project1.logic.Models;
-using project1.ViewModels;
+using project1.logic.ViewModels;
 
 namespace project1.Controllers
 {

@@ -12,21 +12,27 @@ namespace project1.Controllers
 {
     public class DisplayMenuController : Controller
     {
-        private readonly restaurantContext _context;
+
         public IRepository Repo { get; }
 
+        
         public DisplayMenuController(IRepository repo)
         {
             Repo = repo ?? throw new ArgumentNullException(nameof(repo));
-        }
 
+        }
+        
+        [HttpPost]
         public IActionResult Index()
         {
             return View(Repo.GetMenu());
         }
+    }
+}
         // GET: DisplayMenu
         
         // GET: DisplayMenu/Details/5
+        /*
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -152,3 +158,4 @@ namespace project1.Controllers
         }
     }
 }
+*/

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace project1.ViewModels
+namespace project1.logic.ViewModels
 {
     public class LocationViewModel
     {

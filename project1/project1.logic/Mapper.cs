@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using project1.logic.Models;
 using project1.data.Entities;
+using project1.logic.ViewModels;
 
 namespace project1.logic
 {
@@ -24,9 +25,15 @@ namespace project1.logic
 
         public static MenuItem Map(Food entityFood)
         {
-            //FoodType food = (FoodType)Enum.Parse(typeof(FoodType), menuList[i].Foodtype);
+            
             FoodType category = (FoodType)Enum.Parse(typeof(FoodType), entityFood.Foodtype);
             var menu = new MenuItem(entityFood.Name, (double)entityFood.Price, category);
+            return menu;
+        }
+
+        public static MenuItemViewModel Map(MenuItem item)
+        {
+            MenuItemViewModel menu = new MenuItemViewModel(item.item, item.price, item.category);
             return menu;
         }
     }
